@@ -141,3 +141,23 @@ const validConstString = '$aConstNum $aConstBool $aConstString';
 
 ## 불리언
 
+불리언 값을 표현하기 위해서는 Dart는 `bool`이라는 이름의 타입이 있다. 오직 두 객체만이 bool 타입을 가진다: 불리언 리터럴은 컴파일 타임 상수인  `true`와 `false`가 있다.
+
+Dart의 타입 안정성은 `if(nonbooleanValue)`나 `assert(nonbooleanValue)`와 같은 코드를 쓸 수 없다는 것이다.
+```dart
+//빈 문자열 체크
+var fullName = '';
+assert(fullName.isEmpty);
+
+//0 체크
+var hitPoints = 0;
+assert(hitPoints <= 0);
+
+//null 체크
+var unicorn;
+assert(unicorn == null);
+
+//NaN 체크
+var iMeantToDoThis = 0 / 0;
+assert(iMeantToDoThis.isNaN);
+```
