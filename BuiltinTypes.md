@@ -83,3 +83,61 @@ var s2 = "Double quotes work just as well.";
 var s3 = 'It\'s easy to escape the string delimiter.';
 var s4 = "It's even easier to use the other delimiter.";
 ```
+표현식의 값의 내부에 문자열을 `${표현}` 으로 대입할 수 있다. 만약 표현이 식별자이면, `{}`를 생략할 수 있다. 해당 객체의 문자열을 구하고 싶다면, 객체의 `toString`을 호출하라.
+```dart
+var s = 'string interpolation';
+
+assert('Dart has $s, which is very handy.' ==
+'Dart has string interpolation, ' +
+'which is very handy');
+assert('That deserves all caps. '+
+'${s.toUpperCase()} is very handy!' == 
+'That deseves all caps. STRING INTERPOLATION is very handy!');
+```
+
+> 노트: == 연산자는 두 객체가 같은지 시험한다. 두 문자열은 같은 코드열을 가지고 있으면 대신할 수 있다.
+
+이웃한 문자열 리터럴은 `+` 연산자를 이용하여 이을 수 있다.
+```dart
+var s1 = 'String '
+'concatenation'
+" works even over line breaks.";
+assert(s1 == 'String concatenation works even over '
+    'line breaks.');
+var s2 = 'the + operator '+'works, as well';
+assert(s2 == 'the + operator works, as well');
+```
+여러 줄의 문자열을 만드는 다른 방법은 작은따음표 혹은 큰따옴표 세 개를 이용하는 것이다.
+```dart
+var s1 = '''
+You can craete
+multi-line strings like this one.
+''';
+
+var s2 = """ This is also a
+multi-line string.""";
+```
+`r`접두어를 붙임으로써 "raw"문자열을 만들 수 있다.
+```dart
+var s = r'In a raw string, not even \n gets special treatment.';
+```
+
+문자열 상수는 보간된 표현의 평가값이 null, 숫자, 문자열, 불리언 컴파일 상수일 경우 컴파일 타임 상수입니다.
+```dart
+///이것은 문자열 상수이다.
+const aConstNum = 0;
+const aConstBool = true;
+const aConstString = 'a constant string';
+
+//이것들은 문자열 상수로 작동하지 않음
+var aNum = 0;
+var aBool = true;
+var aString = 'a string';
+const aConstList = [1,2,3];
+
+const validConstString = '$aConstNum $aConstBool $aConstString';
+//const invalidConstString = '$aNum $aBool $aString $aConstList';
+```
+
+## 불리언
+
