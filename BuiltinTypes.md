@@ -161,3 +161,72 @@ assert(unicorn == null);
 var iMeantToDoThis = 0 / 0;
 assert(iMeantToDoThis.isNaN);
 ```
+
+## 리스트
+
+모든 프로그래밍 언어들의 가장 기본적인 컬렉션은 배열, 혹은 객체의 순서 집합일 것이다. Dart 에서는, 배열은 리스트 객체이고, 대부분의 사람들은 그들을 그냥 Dart 리스트라 부른다.
+
+Dart 리스트 리터럴은 자바스크립트 배열 리터럴과 비슷해 보인다. 다음은 간단 한 Dart 리스트이다.
+```dart
+var list = [1,2,3];
+```
+>노트: Dart는 리스트가 List<int> 타입을 가지고 있다고 추정합니다. 만약 비-정수 객체를 이 리스트에 추가하려 한다면, 분석기 혹은 런타임은 에러를 발생할 것입니다.
+
+리스트는 0-기반 인덱싱을 사용하며, 이는 0이 첫 요소의 인덱스이고, list.length -1 이 마지막 요소의 인덱스입니다. 또한 자바스크립트에서 그랬듯 리스트의 길이를 가져오고 요소를 참조할 수 있습니다.
+```dart
+var list = [1,2,3];
+assert(list.length == 3);
+assert(list[1]==2);
+
+list[1] = 1;
+assert(list[1]==1);
+```
+컴파일 타임 상수인 리스트를 만들기 위해서는 리스트 리터럴 앞에 const를 붙이세요.
+```dart
+var constantList = const [1,2,3];
+//constantList[1] = 1;// 주석을 풀면 에러가 납니다.
+```
+리스트 타입은 리스트를 관리하는 많은 편리한 메소드들을 포함하고 있습니다.
+
+## 셋
+
+Dart에서의 셋은 고유한 요소의 비순서적인 집합이다. Dart는 셋 리터럴과 Set 타입을 통해 셋을 지원한다.
+
+> 버전 노트: Set은 항상 Dart의 코어에 있었으나, Set 리터럴은 Dart2.2에 추가되었습니다.
+
+다음은 Set 리터럴을 이요하여 만든 간단한 Dart Set이다.
+```dart
+var halogens = {'fluorine','chlorine','bromine','iodine','astatine'};
+```
+>노트: Dart는 halogens가 Set<String>타입을 가지고 있다고 유추합니다. 만약 이 셋에 다른 타입의 값을 넣으려고 한다면, 분석기 혹은 런타임이 오류를 발생할 것입니다.
+
+빈 셋을 만들기 위해서는 {}앞에 형식 인자를 붙이거나 {}를 Set 타입에 대입하세요.
+```dart
+var names = <String>{};
+// Set<String> names = {}; //이것도 동작합니다.
+// var names = {}; //Map을 생성합니다. 셋이 아니라.
+```
+> 셋 혹은 맵? 맵 리터럴의 문법은 셋 리터럴과 비슷할 수 있습니다. 왜냐면 맵 리터럴이 먼저 등장했고, `{}`는 맵 타입의 기본값이기 때문입니다. 만약 {}혹은 배정할 변수에 타입 지정자를 빼먹었다면, Dart는 Map<dynamic, dynamic> 타입의 객체를 만들 것입니다.
+
+이미 생성된 set에 새 요소를 추가할 때는 `add()`혹은 `addAll()` 메소드를 이용합니다.
+```dart
+var elements = <String>{};
+elements.add('fluorine');
+elements.addAll(halogens);
+```
+`.length`를 이용하여 셋에 있는 요소들의 개수를 구할 수 있습니다.
+```dart
+var elemtents = <String>{};
+elements.add('fluorine');
+elements.addAll(halogens);
+assert(elements.length == 5);
+```
+컴파일 타임 상수의 set을 만들기 위해서는 셋 리터럴 앞에 `const`를 붙이세요.
+```dart
+final constantSet = 
+    const {'fluorine','chlorine','bromine','iodine','astatine'};
+// constantSet.add('helium'); //이 주석을 풀면 에러가 발생합니다.
+```
+
+## 맵
+
