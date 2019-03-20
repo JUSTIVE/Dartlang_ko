@@ -1,0 +1,15 @@
+<h1 id="중요한-개념들">중요한 개념들</h1>
+
+<p>다트 언어를 배울 때, 다음의 개념들을 명심하세요</p>
+
+<ul>
+  <li>모든 변수에 들어갈 수 있는 것들은 <code class="highlighter-rouge">object</code>이고, <code class="highlighter-rouge">object</code>는 <code class="highlighter-rouge">class</code>의 인스턴스입니다. 심지어 숫자들, 함수들, 그리고 <code class="highlighter-rouge">null</code>도 <code class="highlighter-rouge">object</code>입니다. 모든 object들은 <code class="highlighter-rouge">Object</code>클래스를 상속합니다.</li>
+  <li>Dart 언어가 강타입 언어이지만, 다트는 타입을 생략할 수 있기 때문에 타입 표기는 선택적입니다. 명시적으로 타입이 정해져 있지 않음을 표현하고 싶을 때에는 <code class="highlighter-rouge">dynamic</code>을 사용하세요</li>
+  <li>Dart는 <code class="highlighter-rouge">List&lt;int&gt;</code>, <code class="highlighter-rouge">List&lt;dynamic&gt;</code>과 같은 제네릭을 지원합니다.</li>
+  <li>Dart는 <code class="highlighter-rouge">main()</code>과 같은 최상위 함수 뿐만 아니라 <code class="highlighter-rouge">class</code> 혹은 <code class="highlighter-rouge">object</code>에 종속된 함수를 지원합니다. 또한 함수 내의 함수를 만들 수도 있습니다.(이는 <em>nested function</em> 혹은 <em>local function</em>이라 불립니다)</li>
+  <li>비슷하게, Dart는 최상위 변수 뿐만 아니라 <code class="highlighter-rouge">class</code> 혹은 <code class="highlighter-rouge">object</code>에 종속된 변수를 지원합니다. 인스턴스의 변수는 때론 <code class="highlighter-rouge">field</code> 혹은 <code class="highlighter-rouge">properties</code>라고 불립니다.</li>
+  <li>자바와는 다르게 <code class="highlighter-rouge">public</code>, <code class="highlighter-rouge">protected</code>, <code class="highlighter-rouge">private</code> 키워드를 지원하지 않습니다. 만약 식별자가 <code class="highlighter-rouge">_</code>로 시작한다면, 이는 그 library에 <code class="highlighter-rouge">private</code>합니다.</li>
+  <li>식별자의 이름은 단어 혹은 <code class="highlighter-rouge">_</code>로 시작할 수 있으며, 숫자나 단어들의 조합이 뒤따를 수 있습니다.</li>
+  <li>Dart는 <code class="highlighter-rouge">표현</code>과 <code class="highlighter-rouge">선언</code>를 가지고 있습니다. 예를 들어, <code class="highlighter-rouge">조건 표현 &gt; condition? expr1: expr2</code>은 expr1 혹은 expr2의 값을 가지는 반면, <code class="highlighter-rouge">if-else 선언</code>은 값이 없습니다. 선언은 하나 혹은 이상의 표현을 포함할 수 있으나 표현은 선언을 포함할 수 없습니다.</li>
+  <li>Dart 도구는 <code class="highlighter-rouge">warnings</code>와 <code class="highlighter-rouge">errors</code>의 두 종류의 문제를 보고할 수 있다. <code class="highlighter-rouge">Warnings</code>는 코드가 작동하지 않을 수도 있다는 것을 나타내며, 프로그램의 실행을 방해하지 않는다. <code class="highlighter-rouge">Errors</code>는 컴파일 타임과 런 타임에 발생할 수 있다. 컴파일 타임에러는 코드의 실행을 억제하나, 런타임 에러는 코드를 실행하기 전 예외를 실행한다.</li>
+</ul>

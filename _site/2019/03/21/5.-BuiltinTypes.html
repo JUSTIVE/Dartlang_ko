@@ -1,0 +1,330 @@
+<h1 id="내장-타입">내장 타입</h1>
+
+<p>Dart 다음의 타입을 지원합니다.</p>
+
+<ul>
+  <li>숫자</li>
+  <li>문자열</li>
+  <li>불리언</li>
+  <li>리스트</li>
+  <li>셋</li>
+  <li>맵</li>
+  <li>룬</li>
+  <li>심볼</li>
+</ul>
+
+<p>위의 타입에 대해서는 리터럴을 이용하여 초기화 할 수 있습니다. 예를 들어, <code class="highlighter-rouge">this is a string</code>은 문자열 상수이고, <code class="highlighter-rouge">true</code>는 불리언 상수입니다.</p>
+
+<p>이유는 Dart의 모든 변수는 객체이므로, 생성자를 이용하여 변수를 초기화 할 수 있습니다. 몇몇 내장 타입은 고유한 생성자를 가지고 있습니다. 예를 들어, <code class="highlighter-rouge">Map()</code>을 이용하여 맵을 만들 수 있습니다.</p>
+
+<h2 id="숫자">숫자</h2>
+
+<p>Dart 의 숫자는 두 종류가 있다.</p>
+
+<h3 id="int">int</h3>
+
+<p>정수 값은 플랫폼에 따라 64비트를 초과할 수 없다. Dart VM에서는 -2$^{-63}$~2$^{63}-1$ 사이의 값을 가질 수 있다. Javascript로 컴파일된 Dart는 Javascript 숫자를 사용한다. 이는 2$^{-53}$~2$^{53}-1$ 사이의 값을 가질 수 있다.</p>
+
+<h3 id="double">double</h3>
+
+<p>IEEE 754 표준에 정의된 64비트 실수이다.</p>
+
+<p><code class="highlighter-rouge">int</code>와 <code class="highlighter-rouge">double</code> 형은 <code class="highlighter-rouge">num</code>의 하위타입이다. <code class="highlighter-rouge">num</code>타입은 +,-,/,* 과 같은 기본 연산 뿐만 아니라 abs(), ceil(), floor()와 같은 연산 또한 지원한다. (»와 같은 비트 연산자는 int에 정의되어 있다.) 만약 num과 이의 하위타입에 찾는 것이 없다면, <code class="highlighter-rouge">dart:math</code> 라이브러리에 있을 수 있다.</p>
+
+<p>정수는 소수점이 없는 수이다. 다음은 정수 리터럴을 정의하는 예제이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">hex</span> <span class="o">=</span> <span class="mh">0xDEADBEEF</span><span class="o">;</span>
+</code></pre></div></div>
+<p>만약 숫자가 소수점을 포함한다면, 이는 실수이다. 다음은 실수 리터럴을 정의하는 예제이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">exponents</span> <span class="o">=</span> <span class="mf">1.42e5</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Dart 2.1 부터는 정수 리터럴은 필요할 때 실수 리터럴로 자동으로 변한다.</p>
+<blockquote>
+  <p>버전 노트: Dart 2.1 이전에는 실수 문맥에서 정수를 쓰는 것이 에러였다.</p>
+</blockquote>
+
+<p>다음은 String에서 숫자로, 혹은 그 반대로 하는 방법이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//문자열 - &gt; 정수</span>
+<span class="kd">var</span> <span class="n">one</span> <span class="o">=</span> <span class="kt">int</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">'1'</span><span class="o">);</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">one</span> <span class="o">==</span> <span class="mi">1</span><span class="o">);</span>
+
+<span class="c1">//문자열 - &gt; 실수</span>
+<span class="kd">var</span> <span class="n">onePointOne</span> <span class="o">=</span> <span class="kt">double</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">'1.1'</span><span class="o">);</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">onePointOne</span> <span class="o">==</span> <span class="mf">1.1</span><span class="o">);</span>
+
+<span class="c1">//정수 - &gt; 문자열</span>
+<span class="kt">String</span> <span class="n">oneAsString</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">oneAsString</span> <span class="o">==</span> <span class="s">'1'</span><span class="o">);</span>
+
+<span class="c1">//실수 - &gt; 문자열</span>
+<span class="kt">String</span> <span class="n">piAsString</span> <span class="o">=</span> <span class="mf">3.14159</span><span class="o">.</span><span class="na">toStringAsFixed</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">piAsString</span> <span class="o">==</span> <span class="s">'3.14'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>정수 타입은 시프트 연산, &amp;, | 연산과 같은 비트 연산자를 정의합니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">assert</span><span class="o">((</span><span class="mi">3</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="o">)==</span><span class="mi">6</span><span class="o">);</span> <span class="c1">// 0011 &lt;&lt; 1 == 0110</span>
+<span class="k">assert</span><span class="o">((</span><span class="mi">3</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="o">)==</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// 0011 &gt;&gt; 1 == 0001</span>
+<span class="k">assert</span><span class="o">((</span><span class="mi">3</span><span class="o">|</span><span class="mi">4</span><span class="o">)==</span><span class="mi">7</span><span class="o">);</span> <span class="c1">//0011 | 0100 == 0111</span>
+</code></pre></div></div>
+<p>리터럴 숫자는 컴파일 타임 상수이다. 많은 수식 표현 또한 피연산자들이 컴파일 타임 상수인 경우 컴파일 타임 상수이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="n">msPerSecond</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
+<span class="kd">const</span> <span class="n">secondUntilRetry</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+<span class="kd">const</span> <span class="n">msUntilRetry</span> <span class="o">=</span> <span class="n">secondUntilRetry</span> <span class="o">*</span> <span class="n">msPerSecond</span><span class="o">;</span>
+</code></pre></div></div>
+<h2 id="문자열">문자열</h2>
+
+<p>Dart의 문자열은 UTF-16 코드 유닛의 연속이다. 작은따음표 혹은 큰 따옴표를 이용하여 문자열을 만들 수 있다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">'Single quotes work well for string literals.'</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">"Double quotes work just as well."</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">s3</span> <span class="o">=</span> <span class="s">'It</span><span class="se">\'</span><span class="s">s easy to escape the string delimiter.'</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">s4</span> <span class="o">=</span> <span class="s">"It's even easier to use the other delimiter."</span><span class="o">;</span>
+</code></pre></div></div>
+<p>표현식의 값의 내부에 문자열을 <code class="highlighter-rouge">${표현}</code> 으로 대입할 수 있다. 만약 표현이 식별자이면, <code class="highlighter-rouge">{}</code>를 생략할 수 있다. 해당 객체의 문자열을 구하고 싶다면, 객체의 <code class="highlighter-rouge">toString</code>을 호출하라.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">s</span> <span class="o">=</span> <span class="s">'string interpolation'</span><span class="o">;</span>
+
+<span class="k">assert</span><span class="o">(</span><span class="s">'Dart has </span><span class="si">$s</span><span class="s">, which is very handy.'</span> <span class="o">==</span>
+<span class="s">'Dart has string interpolation, '</span> <span class="o">+</span>
+<span class="s">'which is very handy'</span><span class="o">);</span>
+<span class="k">assert</span><span class="o">(</span><span class="s">'That deserves all caps. '</span><span class="o">+</span>
+<span class="s">'</span><span class="si">${s.toUpperCase()}</span><span class="s"> is very handy!'</span> <span class="o">==</span> 
+<span class="s">'That deseves all caps. STRING INTERPOLATION is very handy!'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>노트: == 연산자는 두 객체가 같은지 시험한다. 두 문자열은 같은 코드열을 가지고 있으면 대신할 수 있다.</p>
+</blockquote>
+
+<p>이웃한 문자열 리터럴은 <code class="highlighter-rouge">+</code> 연산자를 이용하여 이을 수 있다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">'String '</span>
+<span class="s">'concatenation'</span>
+<span class="s">" works even over line breaks."</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">s1</span> <span class="o">==</span> <span class="s">'String concatenation works even over '</span>
+    <span class="s">'line breaks.'</span><span class="o">);</span>
+<span class="kd">var</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">'the + operator '</span><span class="o">+</span><span class="s">'works, as well'</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">s2</span> <span class="o">==</span> <span class="s">'the + operator works, as well'</span><span class="o">);</span>
+</code></pre></div></div>
+<p>여러 줄의 문자열을 만드는 다른 방법은 작은따음표 혹은 큰따옴표 세 개를 이용하는 것이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">'''
+You can craete
+multi-line strings like this one.
+'''</span><span class="o">;</span>
+
+<span class="kd">var</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">""" This is also a
+multi-line string."""</span><span class="o">;</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">r</code>접두어를 붙임으로써 “raw”문자열을 만들 수 있다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">s</span> <span class="o">=</span> <span class="sx">r'In a raw string, not even \n gets special treatment.'</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>문자열 상수는 보간된 표현의 평가값이 null, 숫자, 문자열, 불리언 컴파일 상수일 경우 컴파일 타임 상수입니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">///이것은 문자열 상수이다.</span>
+<span class="kd">const</span> <span class="n">aConstNum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kd">const</span> <span class="n">aConstBool</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="kd">const</span> <span class="n">aConstString</span> <span class="o">=</span> <span class="s">'a constant string'</span><span class="o">;</span>
+
+<span class="c1">//이것들은 문자열 상수로 작동하지 않음</span>
+<span class="kd">var</span> <span class="n">aNum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">aBool</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="kd">var</span> <span class="n">aString</span> <span class="o">=</span> <span class="s">'a string'</span><span class="o">;</span>
+<span class="kd">const</span> <span class="n">aConstList</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">];</span>
+
+<span class="kd">const</span> <span class="n">validConstString</span> <span class="o">=</span> <span class="s">'</span><span class="si">$aConstNum</span><span class="s"> </span><span class="si">$aConstBool</span><span class="s"> </span><span class="si">$aConstString</span><span class="s">'</span><span class="o">;</span>
+<span class="c1">//const invalidConstString = '$aNum $aBool $aString $aConstList';</span>
+</code></pre></div></div>
+
+<h2 id="불리언">불리언</h2>
+
+<p>불리언 값을 표현하기 위해서는 Dart는 <code class="highlighter-rouge">bool</code>이라는 이름의 타입이 있다. 오직 두 객체만이 bool 타입을 가진다: 불리언 리터럴은 컴파일 타임 상수인  <code class="highlighter-rouge">true</code>와 <code class="highlighter-rouge">false</code>가 있다.</p>
+
+<p>Dart의 타입 안정성은 <code class="highlighter-rouge">if(nonbooleanValue)</code>나 <code class="highlighter-rouge">assert(nonbooleanValue)</code>와 같은 코드를 쓸 수 없다는 것이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//빈 문자열 체크</span>
+<span class="kd">var</span> <span class="n">fullName</span> <span class="o">=</span> <span class="s">''</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">fullName</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">);</span>
+
+<span class="c1">//0 체크</span>
+<span class="kd">var</span> <span class="n">hitPoints</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">hitPoints</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">//null 체크</span>
+<span class="kd">var</span> <span class="n">unicorn</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">unicorn</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span>
+
+<span class="c1">//NaN 체크</span>
+<span class="kd">var</span> <span class="n">iMeantToDoThis</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">iMeantToDoThis</span><span class="o">.</span><span class="na">isNaN</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="리스트">리스트</h2>
+
+<p>모든 프로그래밍 언어들의 가장 기본적인 컬렉션은 배열, 혹은 객체의 순서 집합일 것이다. Dart 에서는, 배열은 리스트 객체이고, 대부분의 사람들은 그들을 그냥 Dart 리스트라 부른다.</p>
+
+<p>Dart 리스트 리터럴은 자바스크립트 배열 리터럴과 비슷해 보인다. 다음은 간단 한 Dart 리스트이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">];</span>
+</code></pre></div></div>
+<blockquote>
+  <p>노트: Dart는 리스트가 List<int> 타입을 가지고 있다고 추정합니다. 만약 비-정수 객체를 이 리스트에 추가하려 한다면, 분석기 혹은 런타임은 에러를 발생할 것입니다.</int></p>
+</blockquote>
+
+<p>리스트는 0-기반 인덱싱을 사용하며, 이는 0이 첫 요소의 인덱스이고, list.length -1 이 마지막 요소의 인덱스입니다. 또한 자바스크립트에서 그랬듯 리스트의 길이를 가져오고 요소를 참조할 수 있습니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">list</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">];</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">3</span><span class="o">);</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">list</span><span class="o">[</span><span class="mi">1</span><span class="o">]==</span><span class="mi">2</span><span class="o">);</span>
+
+<span class="n">list</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">list</span><span class="o">[</span><span class="mi">1</span><span class="o">]==</span><span class="mi">1</span><span class="o">);</span>
+</code></pre></div></div>
+<p>컴파일 타임 상수인 리스트를 만들기 위해서는 리스트 리터럴 앞에 const를 붙이세요.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">constantList</span> <span class="o">=</span> <span class="kd">const</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">];</span>
+<span class="c1">//constantList[1] = 1;// 주석을 풀면 에러가 납니다.</span>
+</code></pre></div></div>
+<p>리스트 타입은 리스트를 관리하는 많은 편리한 메소드들을 포함하고 있습니다.</p>
+
+<h2 id="셋">셋</h2>
+
+<p>Dart에서의 셋은 고유한 요소의 비순서적인 집합이다. Dart는 셋 리터럴과 Set 타입을 통해 셋을 지원한다.</p>
+
+<blockquote>
+  <p>버전 노트: Set은 항상 Dart의 코어에 있었으나, Set 리터럴은 Dart2.2에 추가되었습니다.</p>
+</blockquote>
+
+<p>다음은 Set 리터럴을 이요하여 만든 간단한 Dart Set이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">halogens</span> <span class="o">=</span> <span class="o">{</span><span class="s">'fluorine'</span><span class="o">,</span><span class="s">'chlorine'</span><span class="o">,</span><span class="s">'bromine'</span><span class="o">,</span><span class="s">'iodine'</span><span class="o">,</span><span class="s">'astatine'</span><span class="o">};</span>
+</code></pre></div></div>
+<blockquote>
+  <p>노트: Dart는 halogens가 Set<String>타입을 가지고 있다고 유추합니다. 만약 이 셋에 다른 타입의 값을 넣으려고 한다면, 분석기 혹은 런타임이 오류를 발생할 것입니다.</String></p>
+</blockquote>
+
+<p>빈 셋을 만들기 위해서는 {}앞에 형식 인자를 붙이거나 {}를 Set 타입에 대입하세요.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">names</span> <span class="o">=</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;{};</span>
+<span class="c1">// Set&lt;String&gt; names = {}; //이것도 동작합니다.</span>
+<span class="c1">// var names = {}; //Map을 생성합니다. 셋이 아니라.</span>
+</code></pre></div></div>
+<blockquote>
+  <p>셋 혹은 맵? 맵 리터럴의 문법은 셋 리터럴과 비슷할 수 있습니다. 왜냐면 맵 리터럴이 먼저 등장했고, <code class="highlighter-rouge">{}</code>는 맵 타입의 기본값이기 때문입니다. 만약 {}혹은 배정할 변수에 타입 지정자를 빼먹었다면, Dart는 Map&lt;dynamic, dynamic&gt; 타입의 객체를 만들 것입니다.</p>
+</blockquote>
+
+<p>이미 생성된 set에 새 요소를 추가할 때는 <code class="highlighter-rouge">add()</code>혹은 <code class="highlighter-rouge">addAll()</code> 메소드를 이용합니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">elements</span> <span class="o">=</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;{};</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">'fluorine'</span><span class="o">);</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">halogens</span><span class="o">);</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">.length</code>를 이용하여 셋에 있는 요소들의 개수를 구할 수 있습니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">elemtents</span> <span class="o">=</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;{};</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">'fluorine'</span><span class="o">);</span>
+<span class="n">elements</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">halogens</span><span class="o">);</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">elements</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">5</span><span class="o">);</span>
+</code></pre></div></div>
+<p>컴파일 타임 상수의 set을 만들기 위해서는 셋 리터럴 앞에 <code class="highlighter-rouge">const</code>를 붙이세요.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="n">constantSet</span> <span class="o">=</span> 
+    <span class="kd">const</span> <span class="o">{</span><span class="s">'fluorine'</span><span class="o">,</span><span class="s">'chlorine'</span><span class="o">,</span><span class="s">'bromine'</span><span class="o">,</span><span class="s">'iodine'</span><span class="o">,</span><span class="s">'astatine'</span><span class="o">};</span>
+<span class="c1">// constantSet.add('helium'); //이 주석을 풀면 에러가 발생합니다.</span>
+</code></pre></div></div>
+
+<h2 id="맵">맵</h2>
+
+<p>일반적으로, 맵은 키와 값을 연관짓는 객체이다. 키와 값은 둘 다 아무 타입의 객체가 될 수 있다. 각각의 키는 하나만 존재할 수 있으나, 값은 여러 번 쓰일 수 있다. Dart는 맵 리터럴과 맵 타입을 통해 맵을 지원한다.</p>
+
+<p>다음은 맵 리터럴을 이용하여 생성한 Dart 맵의 몇 예시이다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">gifts</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="c1">//Key: Value</span>
+    <span class="s">'first'</span> <span class="o">:</span> <span class="s">'partridge'</span><span class="o">,</span>
+    <span class="s">'second'</span><span class="o">:</span> <span class="s">'turtledoves'</span><span class="o">,</span>
+    <span class="s">'fifth'</span><span class="o">:</span> <span class="s">'golden rings'</span>
+<span class="o">};</span>
+
+<span class="kd">var</span> <span class="n">noble</span> <span class="n">Gases</span> <span class="o">={</span>
+    <span class="mi">2</span> <span class="o">:</span> <span class="s">'helium'</span><span class="o">,</span>
+    <span class="mi">10</span> <span class="o">:</span> <span class="s">'neon'</span><span class="o">,</span>
+    <span class="mi">18</span> <span class="o">:</span> <span class="s">'argon'</span><span class="o">,</span>
+<span class="o">};</span>
+</code></pre></div></div>
+<blockquote>
+  <p>노트 : Dart는 <code class="highlighter-rouge">gifts</code>가 <code class="highlighter-rouge">Map&lt;String, String&gt;</code> 타입을, <code class="highlighter-rouge">nobleGases</code>가 <code class="highlighter-rouge">Map&lt;int, String&gt;</code>타입을 가지고 있다고 유추합니다. 만약 각각의 맵에 다른 값을 추가하려고 한다면, 분석기나 런타임이 에러를 발생할 것입니다.</p>
+</blockquote>
+
+<p>맵 생성자를 이용하여 같은 객체를 만들 수 있다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">gifts</span> <span class="o">=</span> <span class="n">Map</span><span class="o">();</span>
+<span class="n">gifts</span><span class="o">[</span><span class="s">'first'</span><span class="o">]</span> <span class="o">=</span> <span class="s">'partridge'</span><span class="o">;</span>
+<span class="n">gifts</span><span class="o">[</span><span class="s">'second'</span><span class="o">]</span> <span class="o">=</span> <span class="s">'turtledove'</span><span class="o">;</span>
+<span class="n">gifts</span><span class="o">[</span><span class="s">'fifth'</span><span class="o">]</span> <span class="o">=</span> <span class="s">'golden rings'</span><span class="o">;</span>
+
+<span class="kd">var</span> <span class="n">nobleGases</span> <span class="o">=</span> <span class="n">Map</span><span class="o">();</span>
+<span class="n">nobleGases</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="s">'helium'</span><span class="o">;</span>
+<span class="n">nobleGases</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span> <span class="o">=</span> <span class="s">'neon'</span><span class="o">;</span>
+<span class="n">nobleGases</span><span class="o">[</span><span class="mi">18</span><span class="o">]</span> <span class="o">=</span> <span class="s">'argon'</span><span class="o">;</span>
+</code></pre></div></div>
+<blockquote>
+  <p>노트: <code class="highlighter-rouge">Map()</code> 대신에 <code class="highlighter-rouge">new Map()</code>을 사용하는 것을 기대했을 수 있겠지만, Dart 2부터는 new 키워드는 옵션입니다.</p>
+</blockquote>
+
+<p>이미 있는 맵에 새로운 키-값 쌍을 추가하는 것은 자바스크립트와 똑같습니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">gifts</span> <span class="o">=</span> <span class="o">{</span><span class="s">'first'</span><span class="o">:</span><span class="s">'partridge'</span><span class="o">};</span>
+<span class="n">gifts</span><span class="o">[</span><span class="s">'fourth'</span><span class="o">]</span> <span class="o">=</span> <span class="s">'calling birds'</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>맵에서 값을 받아오는 것도 자바스크립트와 똑같습니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">gifts</span> <span class="o">=</span> <span class="o">{</span><span class="s">'first'</span><span class="o">:</span><span class="s">'partridge'</span><span class="o">};</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">gifts</span><span class="o">[</span><span class="s">'first'</span><span class="o">]</span> <span class="o">==</span> <span class="s">'partridge'</span><span class="o">);</span>
+</code></pre></div></div>
+<p>만약 맵에 없는 키를 찾아본다면, <code class="highlighter-rouge">null</code> 값을 리턴받을 것입니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">gifts</span> <span class="o">=</span> <span class="o">{</span><span class="s">'first'</span><span class="o">:</span> <span class="s">'partridge'</span><span class="o">};</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">gifts</span><span class="o">[</span><span class="s">'fifth'</span><span class="o">]==</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">.length</code>를 통해 맵에 있는 키-값 쌍을 구할 수 있습니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="n">gifts</span> <span class="o">=</span> <span class="o">{</span><span class="s">'first'</span><span class="o">:</span><span class="s">'partridge'</span><span class="o">};</span>
+<span class="n">gifts</span><span class="o">[</span><span class="s">'fourth'</span><span class="o">]</span> <span class="o">=</span> <span class="s">'calling birds'</span><span class="o">;</span>
+<span class="k">assert</span><span class="o">(</span><span class="n">gifts</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">2</span><span class="o">);</span>
+</code></pre></div></div>
+<p>컴파일 타임 상수의 맵을 만들기 위해서는 맵 리터럴 앞에 <code class="highlighter-rouge">const</code>를 붙이세요.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="n">constantMap</span> <span class="o">=</span> <span class="kd">const</span><span class="o">{</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="s">'helium'</span><span class="o">,</span>
+    <span class="mi">10</span><span class="o">:</span> <span class="s">'neon'</span><span class="o">,</span>
+    <span class="mi">18</span><span class="o">:</span> <span class="s">'argon'</span>
+<span class="o">};</span>
+
+<span class="c1">//constantMap[2] = 'Helium'; 이 주석을 풀면 에러가 발생합니다.</span>
+</code></pre></div></div>
+
+<h2 id="룬">룬</h2>
+
+<p>Dart에서 룬은 UTF-32코드의 문자열이다.</p>
+
+<p>유니코드는 각각의 숫자, 단어, 지구상의 모든 문자체계의 기호들에 고유한 수치값을 정의합니다. Dart의 문자열이 UTF-16코드 유닛이기 때문에, 32비트 유니코드를 문자열로 다루기 위해서는 특수한 문법이 필요합니다.</p>
+
+<p>보통 유니코드를 표현하는 방법은 <code class="highlighter-rouge">\xXXXX</code>로, XXXX는 4자리의 16진수 값이다. 예를 들어, 하트 문자(♥)는 <code class="highlighter-rouge">\u2665</code>입니다. 4자리 이상의 값을 정의하기 위해서는 중괄호를 이용하세요. 예를 들어, 웃는 이모지(😆)는 <code class="highlighter-rouge">\u{1f600</code>입니다.</p>
+
+<p>문자열 클래스는 룬 정보를 사용할 수 있는 몇몇 속성들이 있습니다. <code class="highlighter-rouge">codeUnitAt</code>과 <code class="highlighter-rouge">codeUnit</code> 속성은 16비트 코드값을 반환합니다. <code class="highlighter-rouge">runes</code> 속성을 이용하여 문자열의 룬을 얻을 수 있습니다.</p>
+
+<p>다음의 예제는 룬과 16-비트,32비트의 관계를 보여줍니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="o">(){</span>
+    <span class="kd">var</span> <span class="n">clapping</span> <span class="o">=</span> <span class="s">'</span><span class="err">\</span><span class="s">u{1f44f}'</span><span class="o">;</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">clapping</span><span class="o">);</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">clapping</span><span class="o">.</span><span class="na">codeUnits</span><span class="o">);</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">clapping</span><span class="o">.</span><span class="na">runes</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+    <span class="n">Runes</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Runes</span><span class="o">(</span>
+        <span class="s">'</span><span class="err">\</span><span class="s">u2665 </span><span class="err">\</span><span class="s">u{1f605} </span><span class="err">\</span><span class="s">u{1f60e} </span><span class="err">\</span><span class="s">u{1f47b} </span><span class="err">\</span><span class="s">u{1f596} </span><span class="err">\</span><span class="s">u{1f44d}'</span>
+    <span class="o">);</span>
+    <span class="n">print</span><span class="o">(</span><span class="k">new</span> <span class="kt">String</span><span class="o">.</span><span class="na">fromCharCodes</span><span class="o">(</span><span class="n">input</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">👏</span>
+<span class="o">[</span><span class="mi">55357</span><span class="o">,</span> <span class="mi">56399</span><span class="o">]</span>
+<span class="o">[</span><span class="mi">128079</span><span class="o">]</span>
+<span class="err">♥</span>  <span class="err">😅</span>  <span class="err">😎</span>  <span class="err">👻</span>  <span class="err">🖖</span>  <span class="err">👍</span>
+</code></pre></div></div>
+<blockquote>
+  <p>노트: 리스트 연산자를 이용한 룬을 다룰 때 주의하세요. 이 방법은 망가지기 쉽고, 특정 언어, 문자 셋, 연산에 의존적입니다.</p>
+</blockquote>
+
+<h2 id="심볼">심볼</h2>
+
+<p>심볼 객체는 다트 프로그램에 정의된 연산자 혹은 지정자를 나타냅니다. 이러한 심볼을 쓸 일이 없을 수도 있지만, 이름으로 지정자를 참조하는 API는 식별자 심볼은 변경하지 않으므로 비용이 비싸지 않습니다.</p>
+
+<p>식별자의 심볼을 얻기 위해서는 리터럴 심볼을 이용하세요. 이는 식별자에 <code class="highlighter-rouge">#</code>이 앞에 붙습니다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ss">#radix</span>
+<span class="ss">#bar</span>
+</code></pre></div></div>
+<p>심볼 리터럴은 컴파일 타임 상수이다.</p>
