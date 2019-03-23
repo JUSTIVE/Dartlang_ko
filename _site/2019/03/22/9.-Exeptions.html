@@ -28,3 +28,25 @@
 </code></pre></div></div>
 
 <h2 id="catch">Catch</h2>
+
+<p>예외를 받게 되면, 발생한 예외를 멈춥니다. 예외를 받는 것은 이것을 처리할 기회를 주게 됩니다.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="o">{</span>
+    <span class="n">breedMoreLlamas</span><span class="o">();</span>
+<span class="o">}</span> <span class="n">on</span> <span class="n">OutOfLlamasException</span><span class="o">{</span>
+    <span class="n">buyMoreLlamas</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>하나 이상의 타입의 예외를 던지는 코드를 처리하기 위해서는 복수의 catch 절을 정의해야 합니다. 던져진 객체의 타입에 맞는 첫 번째 catch 절은 예외를 처리합니다. 만약 catch 절이 타입을 명시하지 않는다면, 그 절은 모든 타입의 던져진 객체를 처리합니다.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">try</span><span class="o">{</span>
+     <span class="n">breedMoreLlamas</span><span class="o">();</span>
+ <span class="o">}</span> <span class="n">on</span> <span class="n">OutOfLlamasException</span><span class="o">{</span>
+     <span class="n">buyMoreLlamas</span><span class="o">();</span>
+ <span class="o">}</span> <span class="n">on</span> <span class="n">Exception</span> <span class="k">catch</span><span class="o">(</span><span class="n">e</span><span class="o">){</span>
+     <span class="n">print</span><span class="o">(</span><span class="s">'Unknown exception </span><span class="si">$e</span><span class="s">'</span><span class="o">);</span>
+ <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">e</span><span class="o">){</span>
+     <span class="n">print</span><span class="o">(</span><span class="s">'Something really unknown </span><span class="si">$e</span><span class="s">'</span><span class="o">);</span>
+ <span class="o">}</span>
+</code></pre></div></div>

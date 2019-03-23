@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-24T02:28:40+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">9. exeptions</title><link href="http://localhost:4000/2019/03/22/9.-Exeptions.html" rel="alternate" type="text/html" title="9. exeptions" /><published>2019-03-22T00:00:00+09:00</published><updated>2019-03-22T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/22/9.%20Exeptions</id><content type="html" xml:base="http://localhost:4000/2019/03/22/9.-Exeptions.html">&lt;h1 id=&quot;exception&quot;&gt;Exception&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-24T04:30:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Dart 맛보기</title><subtitle>Dartlang.org의 dart lang tour를 한글로 번역한 사이트입니다.</subtitle><entry><title type="html">9. exeptions</title><link href="http://localhost:4000/2019/03/22/9.-Exeptions.html" rel="alternate" type="text/html" title="9. exeptions" /><published>2019-03-22T00:00:00+09:00</published><updated>2019-03-22T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/22/9.%20Exeptions</id><content type="html" xml:base="http://localhost:4000/2019/03/22/9.-Exeptions.html">&lt;h1 id=&quot;exception&quot;&gt;Exception&lt;/h1&gt;
 
 &lt;p&gt;여러분의 Dart 코드는 예외를 던지고 받을 수 있습니다. 예외는 의도치 않은 일이 발생한 것을 나타내는 에러입니다. 만약 예외가 잡히지 않는다면, 예외를 발생한 isolate가 중지되고 일반적으로는 isolate 와 프로그램이 중지됩니다.&lt;/p&gt;
 
@@ -27,7 +27,29 @@
 &lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;distanceto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UnimplementedError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;catch&quot;&gt;Catch&lt;/h2&gt;</content><author><name></name></author><summary type="html">Exception</summary></entry><entry><title type="html">2. important concepts</title><link href="http://localhost:4000/2019/03/21/2.-Important-Concepts.html" rel="alternate" type="text/html" title="2. important concepts" /><published>2019-03-21T00:00:00+09:00</published><updated>2019-03-21T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/21/2.%20Important%20Concepts</id><content type="html" xml:base="http://localhost:4000/2019/03/21/2.-Important-Concepts.html">&lt;h1 id=&quot;중요한-개념들&quot;&gt;중요한 개념들&lt;/h1&gt;
+&lt;h2 id=&quot;catch&quot;&gt;Catch&lt;/h2&gt;
+
+&lt;p&gt;예외를 받게 되면, 발생한 예외를 멈춥니다. 예외를 받는 것은 이것을 처리할 기회를 주게 됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;breedMoreLlamas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OutOfLlamasException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;buyMoreLlamas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;하나 이상의 타입의 예외를 던지는 코드를 처리하기 위해서는 복수의 catch 절을 정의해야 합니다. 던져진 객체의 타입에 맞는 첫 번째 catch 절은 예외를 처리합니다. 만약 catch 절이 타입을 명시하지 않는다면, 그 절은 모든 타입의 던져진 객체를 처리합니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;breedMoreLlamas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OutOfLlamasException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;buyMoreLlamas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Unknown exception &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Something really unknown &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Exception</summary></entry><entry><title type="html">2. important concepts</title><link href="http://localhost:4000/2019/03/21/2.-Important-Concepts.html" rel="alternate" type="text/html" title="2. important concepts" /><published>2019-03-21T00:00:00+09:00</published><updated>2019-03-21T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/21/2.%20Important%20Concepts</id><content type="html" xml:base="http://localhost:4000/2019/03/21/2.-Important-Concepts.html">&lt;h1 id=&quot;중요한-개념들&quot;&gt;중요한 개념들&lt;/h1&gt;
 
 &lt;p&gt;다트 언어를 배울 때, 다음의 개념들을 명심하세요&lt;/p&gt;
 
