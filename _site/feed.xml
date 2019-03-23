@@ -1,8 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-24T00:09:16+09:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">9. exeptions</title><link href="http://localhost:4000/2019/03/22/9.-Exeptions.html" rel="alternate" type="text/html" title="9. exeptions" /><published>2019-03-22T00:00:00+09:00</published><updated>2019-03-22T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/22/9.%20Exeptions</id><content type="html" xml:base="http://localhost:4000/2019/03/22/9.-Exeptions.html">&lt;h1 id=&quot;exception&quot;&gt;Exception&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-24T02:28:40+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">9. exeptions</title><link href="http://localhost:4000/2019/03/22/9.-Exeptions.html" rel="alternate" type="text/html" title="9. exeptions" /><published>2019-03-22T00:00:00+09:00</published><updated>2019-03-22T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/22/9.%20Exeptions</id><content type="html" xml:base="http://localhost:4000/2019/03/22/9.-Exeptions.html">&lt;h1 id=&quot;exception&quot;&gt;Exception&lt;/h1&gt;
 
 &lt;p&gt;여러분의 Dart 코드는 예외를 던지고 받을 수 있습니다. 예외는 의도치 않은 일이 발생한 것을 나타내는 에러입니다. 만약 예외가 잡히지 않는다면, 예외를 발생한 isolate가 중지되고 일반적으로는 isolate 와 프로그램이 중지됩니다.&lt;/p&gt;
 
-&lt;p&gt;자바와는 다르게, 모든 Dart의 예외는 검사되지 않은 예외입니다.&lt;/p&gt;</content><author><name></name></author><summary type="html">Exception</summary></entry><entry><title type="html">2. important concepts</title><link href="http://localhost:4000/2019/03/21/2.-Important-Concepts.html" rel="alternate" type="text/html" title="2. important concepts" /><published>2019-03-21T00:00:00+09:00</published><updated>2019-03-21T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/21/2.%20Important%20Concepts</id><content type="html" xml:base="http://localhost:4000/2019/03/21/2.-Important-Concepts.html">&lt;h1 id=&quot;중요한-개념들&quot;&gt;중요한 개념들&lt;/h1&gt;
+&lt;p&gt;자바와는 다르게, 모든 Dart의 예외는 검사되지 않은 예외입니다. 메소드들은 발생할 수 있는 예외를 정의하지 않으며, 메소드들은 어떠한 예외도 받을 필요도 없습니다.&lt;/p&gt;
+
+&lt;p&gt;Dart는 Exception과 Error 와 미리 정의된 하위 타입들을 제공합니다. 당연히, 사용자 정의 예외도 만들 수 있습니다. 반면, Dart 프로그램들은 Exception과 Error 객체가 아닌 non-Null 객체를 예외로 던질 수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;throw&quot;&gt;Throw&lt;/h2&gt;
+
+&lt;p&gt;다음은, 예외를 던지는 예제입니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;FormatException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Expected at least 1 section'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;또한 임의의 객체를 던질 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Out of llamas!'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;노트: 제품 퀄리티의 코드는 일반적으로 Error와 Exception을 구현한 타입을 던집니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;예외를 던지는 것은 표현이기 때문에, =&amp;gt;문 뿐만 아니라 표현을 허용하는 모든 곳에서 예외를 던질 수 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-dart highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;distanceto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UnimplementedError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;catch&quot;&gt;Catch&lt;/h2&gt;</content><author><name></name></author><summary type="html">Exception</summary></entry><entry><title type="html">2. important concepts</title><link href="http://localhost:4000/2019/03/21/2.-Important-Concepts.html" rel="alternate" type="text/html" title="2. important concepts" /><published>2019-03-21T00:00:00+09:00</published><updated>2019-03-21T00:00:00+09:00</updated><id>http://localhost:4000/2019/03/21/2.%20Important%20Concepts</id><content type="html" xml:base="http://localhost:4000/2019/03/21/2.-Important-Concepts.html">&lt;h1 id=&quot;중요한-개념들&quot;&gt;중요한 개념들&lt;/h1&gt;
 
 &lt;p&gt;다트 언어를 배울 때, 다음의 개념들을 명심하세요&lt;/p&gt;
 
