@@ -18,7 +18,7 @@ email: ben399399@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Dartlang.org의 dart lang tour를 한글로 번역한 사이트입니다.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://justive.github.io/Dartlang_ko/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username:  JUSTIVE
 
