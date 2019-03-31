@@ -54,3 +54,7 @@ $on-large:         $on-laptop !default;
   "minima/layout",
   "minima/syntax-highlighting"
 ;
+
+Pre,code{
+  font-family: 'Courier New', Courier, monospace;
+}
